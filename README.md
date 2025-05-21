@@ -2,8 +2,6 @@
 
 A Google-like search that understands meaning using AI (Sentence-BERT).
 
-![Demo Screenshot](static/screenshot.png) *(optional: add screenshot later)*
-
 ## 🚀 How to Run
 
 1. **Clone the repo**
