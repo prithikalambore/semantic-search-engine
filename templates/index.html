@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic Search Engine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>AI-Powered Semantic Search</h1>
+        <form method="POST">
+            <input type="text" name="query" placeholder="Enter your search query..." 
+                   value="{{ query if query else '' }}" required>
+            <button type="submit">Search</button>
+        </form>
+        
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+        
+        {% if results %}
+            <div class="results">
+                <h2>Results for "{{ query }}"</h2>
+                <div class="result-stats">Showing {{ results|length }} most semantically relevant results</div>
+                
+                {% for result in results %}
+                    <div class="result-item">
+                        <h3><a href="{{ result.link }}" target="_blank">{{ result.title }}</a></h3>
+                        <div class="url">{{ result.link }}</div>
+                        <p>{{ result.snippet }}</p>
+                        <div class="similarity">Relevance: {{ "%.0f"|format(result.similarity * 100) }}%</div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
